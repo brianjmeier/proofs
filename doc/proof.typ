@@ -61,7 +61,15 @@ theorem order_omega_pow (k : ℕ) (hk : k ≤ n) :
   exact Nat.pow_div (by omega) (by norm_num)
 ```
 
-Luego, como $D_k$ es cíclico generado por $omega^(2^k)$, su cardinalidad es exactamente el orden del generador. En un grupo finito, el subgrupo cíclico $angle.l g angle.r$ tiene $|angle.l g angle.r| = "ord"(g)$ elementos.
+Luego, como $D_k$ es cíclico generado por $omega^(2^k)$, su cardinalidad es exactamente el orden del generador. Este es un lema estándar de Mathlib:
+
+```lean
+theorem friDomain_card (k : ℕ) (hk : k ≤ n) :
+    Nat.card (friDomain ω k) = 2 ^ (n - k) := by
+  unfold friDomain
+  rw [Nat.card_zpowers]
+  exact order_omega_pow ω n hω k hk
+```
 
 == Corolario (Reducción a la mitad)
 
@@ -111,11 +119,8 @@ theorem friDomain_card_by_induction (k : ℕ) (hk : k ≤ n) :
     rw [h_Dk1, h_Dk]
     have h_exp : n - k = (n - (k + 1)) + 1 := by omega
     rw [h_exp]
-    -- 2^(m+1) / 2 = 2^m
-    have : 2 ^ (n - (k + 1) + 1) / 2 = 2 ^ (n - (k + 1)) := by
-      rw [show 2 ^ (n - (k + 1) + 1) = 2 ^ (n - (k + 1)) * 2 by ring]
-      simp
-    rw [this]
+    rw [show 2 ^ ((n - (k + 1)) + 1) = 2 ^ (n - (k + 1)) * 2 by ring]
+    simp
 ```
 
 = Perspectiva vía homomorfismos (primer teorema del isomorfismo)
