@@ -71,7 +71,7 @@ $ |D_k| = 2 dot |D_(k+1)|. $
 
 The set $D_(k+1)$ is obtained by squaring every element of $D_k$. In a cyclic group of even order, the squaring map sends exactly two elements to each output: if $x^2 = y$, then $(-x)^2 = y$ as well, and $x \neq -x$ because the group order $2^(n-k)$ is at least 2. Therefore, the number of distinct squares is exactly half the number of original elements:
 
-$ |D_(k+1)| = |D_k| / 2 = 2^(n-k) / 2 = 2^(n-(k+1)). #h(1em) checkmark $
+$ |D_(k+1)| = (|D_k|) / 2 = (2^(n-k)) / 2 = 2^(n-(k+1)). #h(1em) checkmark $
 
 This completes the induction.
 
