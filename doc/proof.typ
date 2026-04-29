@@ -69,7 +69,7 @@ The kernel of $phi$ consists of the elements $x in D_k$ such that $x^2 = 1$. Sin
 
 Each element of $D_(k+1)$ is the image of exactly $|ker(phi)| = 2$ elements from $D_k$. Hence:
 
-$ |D_(k+1)| = |D_k| / |ker(phi)| = |D_k| / 2. #h(1em) checkmark $
+$ |D_(k+1)| = (|D_k|) / |ker(phi)| = (|D_k|) / 2. #h(1em) checkmark $
 
 This completes the proof.
 
