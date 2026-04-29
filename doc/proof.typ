@@ -61,9 +61,13 @@ $ |D_k| = 2 dot |D_(k+1)|. $
 
 = Proof
 
+To understand why the halving happens, we look at the squaring map $phi : D_k -> D_(k+1)$ given by $phi(x) = x^2$. This map sends each element of $D_k$ to its square in $D_(k+1)$.
+
+*Def:* The *kernel* of a map $phi$, written $ker(phi)$, is the set of elements that $phi$ sends to $1$. In other words, $ker(phi) = {x in D_k : phi(x) = 1}$.
+
 *Theorem.* For every $k < n$, we have $|D_(k+1)| = |D_k| / 2$.
 
-*Proof.* Consider the squaring map $phi : D_k -> D_(k+1)$ given by $phi(x) = x^2$. This map is surjective because $D_(k+1) = {x^2 : x in D_k}$ by construction.
+*Proof.* The squaring map $phi(x) = x^2$ is surjective because $D_(k+1) = {x^2 : x in D_k}$ by construction.
 
 The kernel of $phi$ consists of the elements $x in D_k$ such that $x^2 = 1$. Since $D_k$ is a cyclic group of order $2^(n-k)$ (which is even because $k < n$), the equation $x^2 = 1$ has exactly two solutions: $x = 1$ and $x = -1$. Therefore, $|ker(phi)| = 2$.
 
