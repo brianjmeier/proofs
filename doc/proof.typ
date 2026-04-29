@@ -34,9 +34,12 @@ Let's say $n = 3$, that is, $omega$ has order $2^3 = 8$.
 
 - $D_1$ comes from squaring each element of $D_0$:
 
-  $D_1 = {(omega^j)^2 : j = 0, 1, dots, 7} = {1, omega^2, omega^4, omega^6, omega^8, omega^10, omega^12, omega^14} = {1, omega^2, omega^4, omega^6}$.
+  $D_1 &= {1^2, omega^2, (omega^2)^2, (omega^3)^2, (omega^4)^2, (omega^5)^2, (omega^6)^2, (omega^7)^2}\
+  &={1, omega^2, omega^4, omega^6, omega^8, omega^10, omega^12, omega^14}\
+  &={1, omega^2, omega^4, omega^6, omega^0, omega^2, omega^4, omega^6}\
+  &={1, omega^2, omega^4, omega^6}$
 
-  So, $|D_0| = 8$ and $|D_1| = 4$.
+  So, $|D_0| = 8$ and $|D_1|=4$. Let's continue.
 
 - $D_2 = {(omega^2)^2, (omega^4)^2, (omega^6)^2, 1^2} = {1, omega^4, omega^8, omega^12} = {1, omega^4, 1, omega^4} = {1, omega^4}$.
 
