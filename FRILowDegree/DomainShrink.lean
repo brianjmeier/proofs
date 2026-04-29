@@ -145,15 +145,51 @@ theorem friDomain_card_by_induction (k : ℕ) (hk : k ≤ n) :
    la ecuación x^2 = 1 tiene exactamente 2 soluciones: x = 1 y x = -1.
    
    Por tanto |D_{k+1}| = |D_k| / |ker(φ)| = |D_k| / 2.
+   
+   Usamos el lema estándar de Mathlib: en un grupo cíclico G, el kernel del
+   homomorfismo x ↦ x^d tiene cardinalidad gcd(|G|, d).
 -/ 
 
 theorem friDomain_kernel_size (k : ℕ) (hk : k < n) [NeZero (2 : F)] :
     let φ : (friDomain ω k) →* Fˣ := 
       MonoidHom.mk' (fun (x : (friDomain ω k)) => (x.val ^ 2)) (by intros; simp [mul_pow])
     Nat.card (MonoidHom.ker φ) = 2 := by
-  -- La prueba completa requiere más estructura del grupo cíclico
-  -- pero la idea es que x^2 = 1 tiene exactamente 2 raíces en un grupo cíclico de orden par
-  sorry
+  intro φ
+  -- En un grupo cíclico, el kernel de x ↦ x^d tiene tamaño gcd(|G|, d)
+  -- D_k es cíclico de orden 2^{n-k}, y d = 2, así que gcd(2^{n-k}, 2) = 2
+  
+  -- Primero, notamos que ker φ = ker(powMonoidHom 2) como subgrupos de D_k,
+  -- porque ambos son {x ∈ D_k : x^2 = 1}
+  have h_ker_eq : MonoidHom.ker φ = MonoidHom.ker (powMonoidHom 2 : (friDomain ω k) →* (friDomain ω k)) := by
+    ext x
+    simp only [MonoidHom.mem_ker, powMonoidHom_apply]
+    -- Expandimos la definición de φ manualmente
+    change ((x : Fˣ) ^ 2 = 1) ↔ (x ^ 2 = 1)
+    -- La multiplicación en D_k es la restricción de la de Fˣ
+    constructor
+    · intro h_eq
+      -- ↑x ^ 2 = 1 en Fˣ implica x^2 = 1 en D_k
+      have : (x ^ 2 : (friDomain ω k)) = 1 := by
+        apply Subtype.ext
+        exact h_eq
+      exact this
+    · intro h_eq
+      -- x^2 = 1 en D_k implica ↑x ^ 2 = 1 en Fˣ
+      have h_eq2 : ((x ^ 2 : (friDomain ω k)) : Fˣ) = 1 := by
+        rw [h_eq]
+        rfl
+      exact h_eq2
+  
+  rw [h_ker_eq]
+  rw [IsCyclic.card_powMonoidHom_ker]
+  -- gcd(2^{n-k}, 2) = 2 porque k < n implica 2^{n-k} ≥ 2
+  have h_card : Nat.card (friDomain ω k) = 2 ^ (n - k) := friDomain_card ω n hω k (by omega)
+  rw [h_card]
+  have h_two_dvd : 2 ∣ 2 ^ (n - k) := by
+    apply dvd_pow
+    · exact dvd_refl 2
+    · omega
+  exact Nat.gcd_eq_right h_two_dvd
 
 end Direct_FRI_Proof
 
