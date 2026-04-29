@@ -61,21 +61,19 @@ $ |D_k| = 2 dot |D_(k+1)|. $
 
 = Proof
 
-To understand why the halving happens, we look at the squaring map $phi : D_k -> D_(k+1)$ given by $phi(x) = x^2$. This map sends each element of $D_k$ to its square in $D_(k+1)$.
-
-*Def:* The *kernel* of a map $phi$, written $ker(phi)$, is the set of elements that $phi$ sends to $1$. In other words, $ker(phi) = {x in D_k : phi(x) = 1}$.
-
 *Theorem.* For every $k < n$, we have $|D_(k+1)| = |D_k| / 2$.
 
-*Proof.* The squaring map $phi(x) = x^2$ is surjective because $D_(k+1) = {x^2 : x in D_k}$ by construction.
+*Proof by induction on $k$.*
 
-The kernel of $phi$ consists of the elements $x in D_k$ such that $x^2 = 1$. Since $D_k$ is a cyclic group of order $2^(n-k)$ (which is even because $k < n$), the equation $x^2 = 1$ has exactly two solutions: $x = 1$ and $x = -1$. Therefore, $|ker(phi)| = 2$.
+*Base case* ($k = 0$): We need to show $|D_1| = |D_0| / 2$. We know $|D_0| = 2^n$ because $D_0$ contains all powers of $omega$ up to $omega^(2^n - 1)$. Looking at the example above, we saw that squaring the 8 elements of $D_0$ produced only 4 distinct elements in $D_1$. This happens because some pairs of elements in $D_0$ have the same square. In fact, for every $y$ in $D_1$, there are exactly two elements $x$ in $D_0$ such that $x^2 = y$: if $x$ is one solution, then $-x$ is the other (and $x \neq -x$ since the order is even). Thus $|D_1| = |D_0| / 2 = 2^(n-1)$. $checkmark$
 
-Each element of $D_(k+1)$ is the image of exactly $|ker(phi)| = 2$ elements from $D_k$. Hence:
+*Inductive step:* Assume $|D_k| = |D_(k-1)| / 2$ holds (equivalently, $|D_k| = 2^(n-k)$). We want to show $|D_(k+1)| = |D_k| / 2$.
 
-$ |D_(k+1)| = (|D_k|) / |ker(phi)| = (|D_k|) / 2. #h(1em) checkmark $
+The set $D_(k+1)$ is obtained by squaring every element of $D_k$. In a cyclic group of even order, the squaring map sends exactly two elements to each output: if $x^2 = y$, then $(-x)^2 = y$ as well, and $x \neq -x$ because the group order $2^(n-k)$ is at least 2. Therefore, the number of distinct squares is exactly half the number of original elements:
 
-This completes the proof.
+$ |D_(k+1)| = |D_k| / 2 = 2^(n-k) / 2 = 2^(n-(k+1)). #h(1em) checkmark $
+
+This completes the induction.
 
 *Observation.* By iterating this halving, we obtain $|D_k| = 2^(n-k)$ for all $k <= n$. In particular, starting from $|D_0| = 2^n$, after $n$ halvings we reach $|D_n| = 1$. In $n$ steps, the group collapses to a single element. This exponential reduction is the fundamental algebraic property that makes this structure so useful in iterative constructions.
 
