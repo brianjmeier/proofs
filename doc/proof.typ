@@ -51,6 +51,8 @@ Let's say $n = 3$, that is, $omega$ has order $2^3 = 8$.
 
 We observe a clear pattern: $8 -> 4 -> 2 -> 1$. Each step divides by $2$.
 
+#pagebreak()
+
 = Hypothesis
 
 From the example above, a natural hypothesis emerges:
