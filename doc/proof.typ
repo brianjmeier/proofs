@@ -8,7 +8,9 @@
 
 = Introduction
 
-Let $F$ be a finite field. Within its non-zero elements $F^times$, we choose an element $omega$ that is a primitive root of order $2^n$, i.e. $omega^(2^n) = 1$ and no smaller positive power of $omega$ gives $1$.
+Let $F$ be a finite field. Within its non-zero elements $F^times$, we choose an element $omega$ that is a primitive root of order $2^n$ with $n >= 1$, i.e. $omega^(2^n) = 1$ and no smaller positive power of $omega$ gives $1$.
+
+*Note:* We require $n >= 1$ so that the initial order $|D_0| = 2^n$ is even. This is the hypothesis we need for the halving to begin.
 
 From $omega$, we construct a chain of subsets $D_0, D_1, D_2, dots$ where each is obtained by squaring the previous one, $D_k = D_(k-1)^2 = {x^2 : x in D_(k-1)}$:
 
