@@ -61,13 +61,13 @@ $ |D_k| = 2 dot |D_(k+1)|. $
 
 = Proof
 
-*Theorem.* For every $k < n$, we have $|D_(k+1)| = |D_k| / 2$.
+*Theorem.* For every $k < n$, we have $|D_(k+1)| = (|D_k|) / 2$.
 
 *Proof by induction on $k$.*
 
-*Base case* ($k = 0$): We need to show $|D_1| = |D_0| / 2$. We know $|D_0| = 2^n$ because $D_0$ contains all powers of $omega$ up to $omega^(2^n - 1)$. Looking at the example above, we saw that squaring the 8 elements of $D_0$ produced only 4 distinct elements in $D_1$. This happens because some pairs of elements in $D_0$ have the same square. In fact, for every $y$ in $D_1$, there are exactly two elements $x$ in $D_0$ such that $x^2 = y$: if $x$ is one solution, then $-x$ is the other (and $x \neq -x$ since the order is even). Thus $|D_1| = |D_0| / 2 = 2^(n-1)$. $checkmark$
+*Base case* ($k = 0$): We need to show $|D_1| = (|D_0|) / 2$. We know $|D_0| = 2^n$ because $D_0$ contains all powers of $omega$ up to $omega^(2^n - 1)$. Looking at the example above, we saw that squaring the 8 elements of $D_0$ produced only 4 distinct elements in $D_1$. This happens because some pairs of elements in $D_0$ have the same square. In fact, for every $y$ in $D_1$, there are exactly two elements $x$ in $D_0$ such that $x^2 = y$: if $x$ is one solution, then $-x$ is the other (and $x \neq -x$ since the order is even). Thus $|D_1| = |D_0| / 2 = 2^(n-1)$. $checkmark$
 
-*Inductive step:* Assume $|D_k| = |D_(k-1)| / 2$ holds (equivalently, $|D_k| = 2^(n-k)$). We want to show $|D_(k+1)| = |D_k| / 2$.
+*Inductive step:* Assume $|D_k| = (|D_(k-1)|) / 2$ holds (equivalently, $|D_k| = 2^(n-k)$). We want to show $|D_(k+1)| = (|D_k|) / 2$.
 
 The set $D_(k+1)$ is obtained by squaring every element of $D_k$. In a cyclic group of even order, the squaring map sends exactly two elements to each output: if $x^2 = y$, then $(-x)^2 = y$ as well, and $x \neq -x$ because the group order $2^(n-k)$ is at least 2. Therefore, the number of distinct squares is exactly half the number of original elements:
 
