@@ -51,7 +51,7 @@ Let's say $n = 3$, that is, $omega$ has order $2^3 = 8$.
 
   It has $1$ element.
 
-We observe a clear pattern: $8 -> 4 -> 2 -> 1$. Each step divides by $2$.
+We observe a clear pattern: $8 arrow.r 4 arrow.r 2 arrow.r 1$. Each step divides by $2$.
 
 #pagebreak()
 
