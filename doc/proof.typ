@@ -71,11 +71,39 @@ $ |D_k| = 2 dot |D_(k+1)|. $
 
 *Base case* ($k = 0$): We need to show $|D_1| = (|D_0|) / 2$. Recall that $D_0$ has $2^n$ elements: $D_0 = {1, omega, omega^2, dots, omega^(2^n - 1)}$. Each element of $D_1$ is the square of some element of $D_0$.
 
-Let's count how many distinct squares we get. Take two elements $omega^i$ and $omega^j$ from $D_0$. Their squares are equal precisely when $omega^(2i) = omega^(2j)$, which means $2i equiv 2j space (mod 2^n)$, or equivalently $i equiv j space (mod 2^(n-1))$. Therefore, for each $j = 0, 1, dots, 2^(n-1) - 1$, the two elements $omega^j$ and $omega^(j + 2^(n-1))$ have the same square. These are exactly two distinct elements because $j + 2^(n-1) < 2^n$. We have partitioned the $2^n$ elements of $D_0$ into $2^(n-1)$ pairs, each pair giving one distinct square in $D_1$. Thus $|D_1| = (|D_0|) / 2 = 2^(n-1)$. $checkmark$
+Consider the element $alpha = omega^((2^n - 1) / 2)$. Since $2^n - 1$ is odd (because $n >= 1$), the exponent $(2^n - 1) / 2$ is an integer. Let's examine $alpha$:
 
-*Inductive step:* Assume $|D_k| = (|D_(k-1)|) / 2$ holds (equivalently, $|D_k| = 2^(n-k)$). We want to show $|D_(k+1)| = (|D_k|) / 2$.
+- First, $alpha^2 = omega^(2^n - 1) = omega^(-1) = omega^(2^n - 1) = 1$ (since $omega^(2^n) = 1$).
 
-The set $D_k$ has $2^(n-k)$ elements of the form $omega^(j dot 2^k)$ for $j = 0, 1, dots, 2^(n-k) - 1$. Squaring gives $(omega^(j dot 2^k))^2 = omega^(j dot 2^(k+1))$. Two such squares are equal precisely when $j dot 2^(k+1) equiv j' dot 2^(k+1) space (mod 2^n)$, which means $j equiv j' space (mod 2^(n-k-1))$. Therefore, for each $j = 0, 1, dots, 2^(n-k-1) - 1$, the two elements $omega^(j dot 2^k)$ and $omega^((j + 2^(n-k-1)) dot 2^k)$ have the same square in $D_(k+1)$. These are two distinct elements of $D_k$ because $j + 2^(n-k-1) < 2^(n-k)$. We have partitioned the $2^(n-k)$ elements of $D_k$ into $2^(n-k-1)$ pairs, each pair giving one distinct square in $D_(k+1)$. Therefore $|D_(k+1)| = (|D_k|) / 2 = (2^(n-k)) / 2 = 2^(n-(k+1))$. $checkmark$
+- Second, $alpha != 1$. If $alpha$ were $1$, then $omega^((2^n - 1) / 2) = 1$, which would mean $omega$ has order at most $(2^n - 1) / 2 < 2^n$, contradicting that $omega$ is primitive of order $2^n$.
+
+So $alpha$ is an element of order exactly $2$ in $D_0$. In a cyclic group, there is exactly one such element: $-1$. Thus $omega^((2^n - 1) / 2) = -1$.
+
+This gives us a clean split of $D_0$ into two halves. The first half contains the "positive" powers:
+
+$ {1, omega, omega^2, dots, omega^((2^n - 3) / 2)} $
+
+The second half contains their negatives:
+
+$ {-1, -omega, -omega^2, dots, -omega^((2^n - 3) / 2)} $
+
+Indeed, $omega^((2^n - 1) / 2) = -1$, and multiplying by $omega^j$ gives $omega^((2^n - 1) / 2 + j) = -omega^j$. As $j$ ranges from $0$ to $(2^n - 3) / 2$, we cover exactly the remaining elements of $D_0$.
+
+Now, squaring any element from the second half gives the same result as squaring its positive counterpart, because $(-x)^2 = x^2$. Therefore, each square in $D_1$ is hit exactly twice: once by a positive element and once by its negative. The distinct elements of $D_1$ are precisely the squares of the positive half:
+
+$ D_1 = {1, omega^2, omega^4, dots, omega^(2^n - 3)} $
+
+This set has $(2^n) / 2 = 2^(n-1)$ elements, so $|D_1| = (|D_0|) / 2$. $checkmark$
+
+*Inductive step:* Assume $|D_k| = 2^(n-k)$ and that $D_k$ is cyclic with generator $omega^(2^k)$ of order $2^(n-k)$. Since $n - k >= 1$ (because $k < n$), the order $2^(n-k)$ is even. We can apply the same argument to $D_k$.
+
+The generator $omega^(2^k)$ has even order $2^(n-k)$, so by the same reasoning:
+
+$ (omega^(2^k))^((2^(n-k) - 1) / 2) = -1 $
+
+within $D_k$. This splits $D_k$ into positive and negative halves. Squaring collapses each pair ${x, -x}$ to a single element, so exactly half the elements survive:
+
+$ |D_(k+1)| = (|D_k|) / 2 = 2^(n-k-1). $ $checkmark$
 
 This completes the induction.
 
